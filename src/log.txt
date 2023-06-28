@@ -1,0 +1,4 @@
+июн. 28, 2023 5:48:05 PM Java_HM.Java_HM_2.Main writeToFile
+INFO: Запись успешно выполнена
+июн. 28, 2023 5:56:45 PM Java_HM.Java_HM_2.Main writeToFile
+INFO: Запись успешно выполнена
