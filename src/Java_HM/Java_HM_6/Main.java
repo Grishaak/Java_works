@@ -4,7 +4,6 @@ package Java_HM.Java_HM_6;
 import java.util.*;
 
 public class Main {
-    List<Notebook> list = new ArrayList<>();
 
     public static void main(String[] args) {
         List<Notebook> list = new ArrayList<>();
@@ -45,7 +44,6 @@ public class Main {
                     "matrix", notebook.matrix);
             map.put(notebook.idNotebook, first_map);
         }
-        System.out.println(map);
         System.out.println("""
                 1 - model
                 2 - ram
@@ -62,16 +60,24 @@ public class Main {
                 "6", "matrix"
         );
         System.out.println("""
-                Выберите критерии фильтраций в цифровом виде,
+                Выберите критерии фильтраций в цифровом виде от 1 до 6,
                 необходимо выбрать как минимум один, как максимум все,
                 Вводите числа через пробел:\s""");
         Scanner scanner = new Scanner(System.in);
         String scan = scanner.nextLine();
-        while (scan.isEmpty()) {
-            System.out.println("Пусто значение, введите заново");
+        while (scan.isBlank()) {
+            System.out.println("Пустое или неврное значение, введите заново: ");
             scan = scanner.nextLine();
         }
         String[] new_scan = scan.split(" ");
+        for (int i = 0; i < new_scan.length; i++) {
+            int digit = Integer.parseInt(new_scan[i]);
+            while (digit < 0 || digit > 6) {
+                System.out.println("Пункта " + digit + " - нет, выберите от 1 до 6.");
+                new_scan[i] = scanner.nextLine();
+                digit = Integer.parseInt(new_scan[i]);
+            }
+        }
         List<String> another_list = new ArrayList<>();
         List<String> filter_list = new ArrayList<>();
         for (int i = 0; i < new_scan.length; i++) {
@@ -88,14 +94,6 @@ public class Main {
                     break;
                 }
             }
-//        for (int i = 0; i < map.size(); i++) {
-//            boolean flag = true;
-//            for (int j = 0; j < another_list.size(); j++) {
-//                if (!(map.get(i).containsValue(another_list.get(j)))) {
-//                    flag = false;
-//                    break;
-//                }
-//            }
             if (flag) {
                 System.out.printf("id ноутбука - %d\n", i);
                 System.out.printf("Model : %s\n", map.get(i).get("model"));
